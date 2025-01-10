@@ -12,5 +12,6 @@ router.route('/').get(resumeController.getResumes);
 router.route('/:resumeId').get(resumeController.getResumeById);
 router.route('/:resumeId').delete(resumeController.deleteResume);
 router.route('/:resumeId').patch(resumeController.updateResumeById);
+router.route('/sendtogrowhire/:resumeId').post(resumeController.sendResumeToGrowHire);
 
 module.exports = router;

@@ -4,7 +4,9 @@ import { ScrollArea } from '@/components/ui/scroll-area';
 import { useGetResumeByIdQuery } from '@/services/apiSlice';
 
 import { ParsedJsonViewer } from './components/parsed-json-viewer';
+
 import ResumePdfViewer from './components/resume-pdf-viewer';
+import ResumeToGrowHireButton from './components/resume-to-growhire';
 
 const ResumeDetails = () => {
   const { id: resumeId } = useParams();
@@ -22,6 +24,7 @@ const ResumeDetails = () => {
       </div>
       <div className='mr-3'>
         <ScrollArea className="h-[calc(100vh-120px)] rounded-lg border-solid border-2 border-slate-400">
+          <ResumeToGrowHireButton resumeId={resume.id}/>
           <ParsedJsonViewer resume={resume} />
         </ScrollArea>
       </div>
