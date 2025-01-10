@@ -171,22 +171,9 @@ const sendResumeToGrowHire = async (resumeId) => {
     );    
     form.append('customFields', JSON.stringify([]));
     form.append('jobId', resume.profile.jobId || 'cm5kjxmdk018hr6ztqwbumdf6');
-    const fileResponse = await fetch(resume.resumePdf.fileUrl);
-    if (!fileResponse.ok) {
-      throw new Error(`Failed to download file from URL: ${fileResponse.statusText}`);
-    }
-
-    // Convert the response into a Buffer
-    const arrayBuffer = await fileResponse.arrayBuffer();
-    const fileBuffer = Buffer.from(arrayBuffer);
-
-    // Append the file to FormData using a readable stream
-    const fileStream = Readable.from(fileBuffer);
-    form.append('resumeFile', fileStream, { filename: 'resume.pdf', contentType: 'application/pdf' });
-
-    
 
 
+    form.append('resumeFile', undefined);
     const response = await fetch(
       'https://dash.growhire.com/api/candidate/create?_data=routes%2Fapi.candidate.create',
       {
