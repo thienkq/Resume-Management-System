@@ -66,9 +66,10 @@ const getResumes = catchAsync(async (req, res) => {
 
 const sendResumeToGrowHire = catchAsync(async (req, res) => {
   const resumeId = req.params.resumeId;
+  const { cookieString, jobId } = req.body; 
 
   try {
-    const result = await resumeService.sendResumeToGrowHire(resumeId);
+    const result = await resumeService.sendResumeToGrowHire(resumeId, cookieString, jobId);
     res.status(httpStatus.OK).send({
       message: 'Resume sent successfully to GrowHire.',
       result,
